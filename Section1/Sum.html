@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <h2 id="answer"></h2>
+  </body>
+  <script>
+    function solution(n) {
+      let answer;
+      answer = (n * (n + 1)) / 2;
+      return answer;
+    }
+    function solution2(n) {
+      let answer = 0;
+      for (let x = 1; x <= n; x++) {
+        answer += x;
+      }
+      return answer;
+    }
+
+    console.log(solution(10));
+    console.log(solution2(10));
+    const answer = document.getElementById("answer");
+    answer.innerHTML = solution(10);
+  </script>
+</html>

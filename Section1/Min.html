@@ -5,27 +5,36 @@
   </head>
   <body>
     <script>
-      // 문제 1: 100이하의 자연수 A, B, C를 입력받아 세 수 중 가장 작은 값을 출력하는
-      // 프로그램을 작성하세요.(정렬을 사용하면 안됩니다)
+      // 세 수 중 가장 작은 수를 찾아 보시오
       function solution(a, b, c) {
-        if (a >= b) {
-          if (b >= c) {
-            return c;
-          } else if (b < c) {
-            return b;
-          }
-        }
+        // Math 함수를 쓰면 쉽게 가능 하지만, if 문을 써서 해보기 연습
+        let answer;
+        // if (a >= b) {
+        //   if (b >= c) {
+        //     answer = c;
+        //   } else if (b < c) {
+        //     answer = b;
+        //   }
+        // }
 
-        if (a <= b) {
-          if (a <= c) {
-            return a;
-          } else if (a > c) {
-            return c;
-          }
-        }
+        // if (a <= b) {
+        //   if (a <= c) {
+        //     answer = a;
+        //   } else if (a > c) {
+        //     answer = c;
+        //   }
+        // }
+
+        // 위의 보다 더 짧게 만들 수 있었다. 최대한 간단하게 할 수 있도록 노력해보자
+        if (a < b) answer = a;
+        else answer = b;
+        if (c < answer) answer = c;
+
+        return answer;
       }
 
       console.log(solution(22, 55, 13));
+      console.log(Math.max([2, 6, 7]));
     </script>
   </body>
 </html>

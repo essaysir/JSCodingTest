@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        // N 명에게 연필을 한 개 씩 나눠주는 경우. 몇 다스가 필요한가 ?
+        let answer;
+        answer = Math.ceil(n / 12);
+        return answer;
+      }
+      function solution2(n) {
+        let answer;
+        if (n % 12 !== 0) answer = n / 12 + 1;
+        else answer = n / 12;
+        // % 은 나머지를 의미 , / 는 나눗셈을 의미한다.
+        return Math.floor(answer); // 실수로 나옴. 정수로 바꾸는 방법은 ? floor ( 내림 ) ?
+      }
+
+      console.log(solution(178));
+      console.log(solution2(178));
+
+      console.log(solution(240));
+      console.log(solution2(240));
+    </script>
+  </body>
+</html>
