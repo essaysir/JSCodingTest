@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    <h2> ANSWER :  <span id="answer1"></span></h2>
+    <h2> ANSWER :  <span id="answer2"></span></h2>
+
+</body>
+<script>
+    function solution( day , carnumbers){
+        let answer  ; 
+        // 의문 : 어떻게 해야 두자리의 숫자에서 일의 자리만 뽑아올 수 있을까? 
+        // 자바와 달리. 자바스크립트는 계산할 경우, 실수로 취급되므로, 따로 내림(Math.floor)을 해줘야한다.   
+        const first_day = day - Math.floor(day/10)*10 ;
+        let count = 0 ; 
+        for ( let x=0 ; x< carnumbers.length ; x++ ){
+            const carnumber = carnumbers[x];
+            const first_num = carnumber - Math.floor(carnumber/10)*10;
+            // console.log(first_num);
+            if ( first_day === first_num) count ++ ;
+        };
+        answer = count ; 
+        return answer ;
+    }// END OF FUNCTION SOLUTION
+
+    function solution2( day , carnumbers ){
+        let ans , count = 0 ;  
+        
+        const first_day = day % 10 ;
+        for ( let x of carnumbers ){
+            if ( x % 10 === first_day ){
+                count ++ ;
+            }
+        }
+        ans = count ; 
+        return ans ; 
+    }
+    const answer1 = solution( 3 , [25,23,11,47,53,17,33]);
+    const answer2 = solution2( 20 , [12,20,54,30,87,91,35]);
+    // console.log( answer2 );
+    document.getElementById('answer1').innerText = answer1 ;
+    document.getElementById('answer2').innerText = answer2 ;
+    
+
+</script>
+
+</html>

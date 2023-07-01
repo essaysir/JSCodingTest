@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    <h2> ANSWER :  <span id="answer"></span></h2>
+</body>
+<script>
+    function solution( a,b,c,d,e,f,g){
+        let answer , min = Number.MAX_SAFE_INTEGER  ; 
+        
+        min = Math.min(a,b,c,d,e,f,g);
+        
+        // [ ] 로 감싸서 넣는 것이 아니다.
+        // console.log(min);
+        answer = min ;  
+        return answer ;
+    }// END OF FUNCTION SOLUTION
+
+    function solution2( a,b,c,d,e,f,g){
+        let answer , min = Number.MAX_SAFE_INTEGER ;
+        // 위에서는 최솟값을 구하기 위해 Max_safe_integer 를 사용한 것이다. 
+        // min = arr[0]; 또한 하나의 방법이다. 
+        // Math 방법을 안 쓰고 한다면, 어떠한 방법들이 존재할 수 있겠는가 ?
+        let arr = [a,b,c,d,e,f,g];
+        for ( let x=0; x<arr.length ; x++ ){
+            if ( arr[x] < min ) min = arr[x];
+        }
+        // 또는 
+        // min = Math.min(...arr);
+        // 또는 
+        // min = Math.min.apply(null , arr);
+        
+        answer = min ; 
+        return answer ;
+    }// END OF FUNCTION SOLUTION2
+
+    // SORT 를 사용해서 구하는 방법 => ES6 에 새롭게 들어온 함수
+    function solution3 ( a,b,c,d,e,f,g){
+        let answer ; 
+        let arr = [a,b,c,d,e,f,g].sort((a,b)=> a-b) ;
+
+        answer = arr[0];
+        return answer ; 
+    }
+    
+    // Reduce 를 사용한 풀이 
+    // array.reduce 란 어떤 함수 인가 ? 
+    // 예시 ) 
+    //  [0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, array) {
+    //  return accumulator + currentValue;
+    //  });
+    
+    // reduce 의 경우,  초기값을 안 넣어주면, 자동적으로 초기값이 accumulator 로 들어가게 된다. 
+
+    function solution4(a,b,c,d,e,f,g) {
+        let answer ;
+        let arr = [a,b,c,d,e,f,g];
+        answer = arr.reduce((acc,cur)=> Math.min(acc,cur));
+        console.log( "확인용 answer4 : " + answer );
+
+        return answer; 
+    }
+
+    console.log ( solution(13,5,67,8,9,11,66) );
+    console.log ( solution(4,3,5,67,8,9,12) );
+    console.log ( solution2(4,3,5,67,8,9,12) );
+    console.log ( solution3(4,3,5,67,8,9,12) );
+    console.log ( solution4(42,33,25,67,58,59,22) );
+
+    document.getElementById('answer').innerText = solution(13,43,35,67,8,9,12);
+</script>
+
+</html>

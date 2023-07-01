@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    <h2> ANSWER :  <span id="answer"></span></h2>
+</body>
+<script>
+    // for 문을 사용한 풀이 
+    function solution( a,b,c,d,e,f,g){
+        let answer , sum = 0  ; 
+        let array = [a,b,c,d,e,f,g] ;
+        let odd_array = [];
+        for ( let x=0 ; x<array.length ; x++ ){
+            if ( array[x]%2 !== 0 ){
+                sum += array[x];
+                odd_array.push(array[x]);
+            }
+        }
+        const min = Math.min(...odd_array);
+        answer = { min : min , sum : sum};
+        return answer ;
+    }// END OF FUNCTION SOLUTION
+
+    // reduce 를 사용한 풀이
+    function solution2(arr){
+        let ans , sum = 0 ;
+        let min = Number.MAX_SAFE_INTEGER ;
+        sum = arr.reduce((acc, cur) => cur % 2 === 1 ? acc + cur : acc, 0);
+        min = arr.reduce((acc,cur)=> cur % 2 === 1 ? Math.min(acc,cur) : acc , min );
+        ans = {min : min , sum : sum };
+        return ans; 
+    }
+    const answer = solution(12,77,38,41,53,92,85);
+    console.log( " 확인용 min : " + answer.min );
+    console.log( " 확인용 sum : " + answer.sum );
+
+    const answer2 = solution2([12,77,38,41,53,92,85]);
+    console.log( " 확인용 min : " + answer2.min );
+    console.log( " 확인용 sum : " + answer2.sum );
+
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function solution(arr){
+        let answer = false ; 
+        // 어떻게 하면, 7개를 더 했을 경우, 100이 되는 상황을 만들 수 있을까? 
+        // 9 가지에서 7개를 선택할 경우의 수는 36 가지이다.
+        // 우선, 행렬을 큰 것순 으로 나열한 후에 하면 더 빠르게 실행할 수 있을듯 하다. 
+        
+        // 만약에 9개를 더한 수가 100 보다 작으면 바로 함수를 끝내도록 한다. 
+        
+        // 36가지를 실행해볼 수 있는 방법이 있을까? 배열에서 9개 중에서 7개를 뽑는 경우의 수를 실행해주는 함수를 어떻게 만들 수 있을까?
+        
+        // 역으로 생각해보자, 9 명중에 7명을 선택하는 것이 아니라
+        // 9명 중에 2명을 뺀다고 생각하면 편하다. 
+        let sum = 0 ;
+        sum = arr.reduce((arr,cur)=>(arr += cur) , 0 );
+        outloop:for ( let x=0 ; x< arr.length ; x++){
+            for ( let y=0; y< arr.length; y++){
+                if ( x != y ){
+                    if ( sum-arr[x]-arr[y] === 100 ){
+                        arr = arr.filter((num)=> num !== arr[x] && num !== arr[y]);
+                        break outloop;
+                    }
+                }
+            }
+        }
+        answer = arr ; 
+        return answer ; 
+    };
+    let arr1 = [20,7,23,19,10,15,25,8,13];
+    let arr2 = [20,3,27,19,10,15,25,8,13];
+    
+    console.log(solution(arr1));
+    console.log(solution(arr2));
+    
+</script>
+</html>
