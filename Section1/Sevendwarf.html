@@ -23,14 +23,19 @@
         // 9명 중에 2명을 뺀다고 생각하면 편하다. 
         let sum = 0 ;
         sum = arr.reduce((arr,cur)=>(arr += cur) , 0 );
-        outloop:for ( let x=0 ; x< arr.length ; x++){
-            for ( let y=0; y< arr.length; y++){
-                if ( x != y ){
+        outloop:for ( let x=0 ; x< arr.length-1 ; x++){
+            // 뽑는 순서에는 상관이 없으니 다음과 같이 진행하면 훨씬 편할듯
+            for ( let y=x+1; y< arr.length; y++){
                     if ( sum-arr[x]-arr[y] === 100 ){
                         arr = arr.filter((num)=> num !== arr[x] && num !== arr[y]);
+                        // 또는 
+                        // arr.splice(y,1) , arr.splice(x,1) 을 통해 두개의 값을 뺴올수도 있다.
+                        // splice(x,1) 의 의미는 index x 부터 1칸 뽑아오라는 의미이다.
+
+                        // * splice 를 할 때의 주의 할 점 => arr 이 바껴버리기 때문에, 뒤에 있는 것을 
+                        // 먼저 splice 를 해줘야 제대로 뽑아질 수 있다. 
                         break outloop;
                     }
-                }
             }
         }
         answer = arr ; 

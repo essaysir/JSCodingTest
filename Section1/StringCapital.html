@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+    <script>
+        // 입력한 string 에서 대문자가 몇개 존재하는 지 알아보기
+        function solution1(str) {
+            let answer, count = 0;
+            const regex = /[A-Z]/;
+
+            // console.log(regex.test(str)); // 대문자 존재 여부 확인
+            // indexOf() 안에 정규표현식을 사용하려고 했으나, 적용되지 않는다. 
+
+            while (regex.test(str)) {
+                str = str.replace(regex, '#');
+                count++;
+            }
+
+            answer = count;
+            return answer;
+        }
+
+        function solution2(str){
+            let answer , count = 0 ;
+            for ( let x of str ){
+                if ( x === x.toUpperCase()){
+                    // toUpperCase 는 x 라는 문자 자체를 변환 시키지는 않는 것이다. 
+                    // 또는
+                    // .charCodeAt() 을 사용할 수 있는데 ,이는 아스키 코드로 변환시켜주는 것이다.
+                    // 대문자 A(65) 부터 Z(90) 까지 이다. 
+                    // 소문자 a(97) 부터 z(122) 까지 이다. 
+                    count ++ ; 
+                }
+            }
+            answer = count ; 
+            return answer ; 
+        }
+        console.log(solution1('KoreanTimeGood'));
+        console.log(solution2('KoreanTimeGood'));
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        // 밑의 문제는 모든 문자를 대문자로 바꾸는 것이다.
+
+        function solution4(str){
+            let answer ; 
+                for ( let x of str ){
+                    str = str.replace(x,x.toUpperCase());
+                }
+            answer = str ; 
+            return answer ; 
+        }
+
+        console.log(solution4('ItisTimeToStudy'));
+    </script>
+</body>
+</html>

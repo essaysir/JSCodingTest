@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 문자열을 받고 특정 알파벳을 바꿔주는 문제
+    function solution1(str){
+        let ans ; 
+            ans = str.replaceAll('A','#');
+            // 또는 
+            // ans = str.replace(/A/g , '#'); 
+            // /A/g 은 정규표현식이고, g 는 global , 전역을 의미하는 것
+
+            // ans = str 을 하더라더 , 문자열의 데이터 위치가 같아지는 것이 아니라 
+            // 단순히 값만 같아지는 것이다. 
+            // 반면에, 배열을 같다고 하면, 데이터를 참조하는 곳마저 같아질 수 있다. 
+        return ans ; 
+    }
+
+    // 특정 문자열과 특정 알파벳을 받고, 해당 알파벳이 몇개가 들어가 있는지 
+    // 
+    function solution2(str, findchar){
+        let ans ;
+        let count = 0 ; 
+            //for(let x=0 ; x<str.length ; x++){
+            // 또는 
+            for ( let x of str ){
+                if (str.indexOf(findchar) === -1 ){
+                    // 특정 알파벳이 존재하지 않으면 ,
+                    // indexOf 의 반환값은 -1 이다. 
+                    break ;
+                }
+                else{
+                    str = str.replace(findchar,'$');
+                    count ++ ;
+                }
+            }
+        ans = count ;
+        return ans ;
+    }
+
+    function solution3 ( str , findchar ){
+        let answer , count = 0 ; 
+        // console.log('확인용 index : ' + str.indexOf(findchar));
+        while ( str.indexOf(findchar) !== -1 ){
+            str = str.replace(findchar,'$');
+            count ++ ;
+        }
+        answer = count ;
+        return answer ;
+    }
+    function solution4 ( str , findchar ){
+        let answer ;
+        answer = str.split(findchar).length;
+        // console.log(str.split(findchar));
+        // split 에 해당하는 char 가 처음이나 마지막에 있으면, 처음 또는 맨 끝에 빈 배열이 하나 생기는 구조이다.
+        // 이 점을 유념해야 한다 . 
+        return answer-1 ;
+    }
+
+    const str = 'BANANA';
+    const str1 = 'COMPUTERPROGRAMMING';
+    console.log(solution1(str));
+    console.log(solution2(str1, 'R'));
+    console.log(solution3(str1, 'R'));
+
+    console.log(solution2(str1, 'G'));
+    console.log(solution3(str1, 'G'));
+
+    console.log(solution4(str1, 'C'));
+    console.log(solution4(str1, 'G'));
+    
+</script>
+</html>
