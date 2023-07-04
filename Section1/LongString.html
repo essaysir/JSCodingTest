@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        // 가장 짧은 문자열 구하기
+        function solution(arr){
+            let answer , min = Number.MAX_SAFE_INTEGER;
+            let ans_index ;
+            // forEach 를 쓰게된 이유 : for of 문을 쓰려고 했는데, 
+            // 문제 요구사항에서 특정 문자를 알기 위해서 index 가 필요했음.
+            arr.forEach((item,index) => {
+                if ( item.length < min ){
+                    min = item.length ;
+                    ans_index = index ;
+                }   
+            });
+
+            answer = arr[ans_index];
+            return answer ;
+        }
+        
+        function solution1(arr){
+            let answer , max = Number.MIN_SAFE_INTEGER;
+            let ans_index ;
+            arr.forEach((item,index) => {
+                if ( item.length > max ){
+                    max = item.length ;
+                    ans_index = index ;
+                }   
+            });
+
+            answer = arr[ans_index];
+            return answer ;
+        }
+        const arr = [ 'teacher' , 'time' , 'student' , 'beautiful' ,'good'];
+        console.log(solution(arr));
+        console.log(solution1(arr));
+        </script>
+</body>
+</html>

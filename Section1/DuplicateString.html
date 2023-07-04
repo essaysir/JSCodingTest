@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+
+    <script>
+        function solution(n, arr){
+            let answer ; 
+                for ( let x=0 ; x<n ; x++  ){
+                    for ( let y=x+1 ; y<n ; y++ ){
+                        if ( arr[x] === arr[y] ){
+                            // 특정 배열에서 특정 index 값의 배열을 지우는 방법은 무엇인가?
+                            arr.splice(y,1);
+                        }
+                    }
+                }
+            answer = arr ;
+            return answer ; 
+        }
+        const num = 5 ; 
+        const arr1 = ['good' , 'time' , 'good' , 'time' , 'studuent'];
+        console.log(solution(num,arr1));
+
+    </script>
+</body>
+</html>

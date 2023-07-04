@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+
+    <script>
+        function solution (str){
+            let answer ;
+                for ( let x of str){
+                    if  ( x === x.toUpperCase()) {
+                        str = str.replace(x,x.toLowerCase());
+                    }
+                    else{
+                        str = str.replace(x,x.toUpperCase());
+                    }
+                }
+            answer = str ;     
+            return answer ; 
+        }
+        
+        const str1 = 'StuDY';
+        console.log(solution(str1));
+    </script>
+</body>
+</html>

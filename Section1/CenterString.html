@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+    <script>
+        function solution1(str){
+            // 중간에 있는 문자 출력하기
+            let answer ; 
+            if ( str.length % 2 === 1 ){// 홀수 인 경우
+                answer = str.charAt(str.length/2);
+            }
+            else{ // 짝수 인 경우
+                let char1 = str.charAt(Math.floor(str.length/2));
+                let char2 = str.charAt(Math.ceil(str.length/2));
+                answer = char1 + char2 ; 
+            }
+            return answer ;
+        };
+        function solution2(str){
+            let answer ; 
+            // 소문자로된 한개의 문자열이 입력 중복된 문자 제거후 출력 
+            // 중복된 문자의 첫 문자는 놔두고, 그 뒤에 나오는 것을 지워야 한다. 
+            for ( let x=0 ; x<str.length ; x++){
+                // 자바스크립트에서 substr 과 substring 은 다른 함수 이다. 
+                // substr("시작 위치", "길이") 이고 , 
+                // substring("시작 위치", "종료 위치") 이다. 
+                // 이때 , substring 은 '종료 위치 -1' 까지 뽑아주는 것이다. 
+                if ( str.charAt(x) === '') break ;
+                let substr = str.substr(x+1);
+                let prevstr = str.substring(0,x+1);
+                if ( substr.indexOf(str.charAt(x)) !== -1 ){
+                    substr = substr.replaceAll(str.charAt(x) , '');
+                    str = prevstr + substr ; 
+                }
+            }
+            answer = str ; 
+            return answer ;
+        };
+
+
+        const str1 = 'study'; 
+        const str2 = 'good';
+        const str3 = 'ksekkset';
+        console.log(solution1(str1));
+        console.log(solution1(str2));
+        console.log(solution2(str3));
+        
+        
+    </script>
+</body>
+</html>
