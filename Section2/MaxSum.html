@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    <script>
+        function solution(arr){
+            // arr[ 행 ] [ 열 ]
+            // 행이 밑으로 , 열은 옆으로 
+            
+            
+            // 격자판에서 각 행의 합 , 각 열의 합, 대각선 의 합중 가장 큰 합을 구하는 문제이다.
+            // 1번째 풀이: 각 행의 합의 최대, 각 열의 합의 최대, 대각선의 합의 최대를 구하고 그 중에서 가장
+            // 다시 가장 큰 것을 뽑았다. 
+            
+            let answer ; 
+            let col_max = Number.MIN_SAFE_INTEGER; 
+            let arr_max = Number.MIN_SAFE_INTEGER; 
+            let dig_max = Number.MIN_SAFE_INTEGER; 
+            for ( let x = 0 ; x<arr.length ; x++ ){
+                let col_sum = 0 ;
+                let arr_sum = 0 ; 
+                for ( let y = 0 ; y<arr.length ; y++ ){
+                    col_sum += arr[x][y]; // 행이 고정된 경우 => 각 행의 합
+                    arr_sum += arr[y][x]; // 열이 고정된 경우 => 각 열의 합 
+                }
+                if ( col_sum > col_max ) col_max = col_sum ;
+                if ( arr_sum > arr_max ) arr_max = arr_sum ;
+                // 다음과 같이 , 각 열의 합의 최대값을 따로 구하지 않고, max 를 하나로 놓아도 됨.
+            }
+            let sum1 = 0 ;
+            let sum2 = 0 ; 
+            for ( let x = 0 ; x<arr.length ; x++){
+                sum1 += arr[x][x];
+                sum2 += arr[x][arr.length-x-1];
+            }
+            if ( sum1 > sum2 ) dig_max = sum1 ;
+            else dig_max = sum2 ;
+
+            answer = Math.max(col_max,arr_max ,dig_max);
+            // console.log(dig_max);
+            // console.log(col_max);
+            // console.log(arr_max);  
+
+
+
+            return answer ;
+        }
+
+        let arr=    [[10, 13, 10, 12, 15], 
+                    [12, 39, 30, 23, 11],
+                    [11, 25, 50, 53, 15],
+                    [19, 27, 29, 37, 27],
+                    [19, 13, 30, 13, 19]];
+            console.log(solution(arr));
+
+    </script>
+</body>
+</html>

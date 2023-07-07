@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+    <script>
+        function solution(arr){
+            let answer , max = Number.MIN_SAFE_INTEGER ; 
+            let count = 0 ; 
+            for ( let x = 0 ; x<arr.length ; x++ ){
+                if  ( arr[x] > max ){
+                    max = arr[x];
+                    count ++ ;
+                }
+            }
+
+            answer = count ; 
+            return answer ;
+        }
+        let num = 8 ;
+        let arr = [ 130 , 135 ,148 , 140 , 145 , 150 , 150 , 153 ];
+        console.log(solution(arr));
+    </script>
+</body>
+</html>

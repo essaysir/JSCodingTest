@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+    <script>
+        function solution(students){
+            // 동점자 존재시 모두 같은 등수를 주고, 그 뒤에 학생은 동점자 수 만큼 뒤의 등수를 받는다.
+            let answer ; 
+            // 입력된 순서대로 등수를 출력한다. 
+            // 등수를 어떻게 부과해야하는가? 
+            // let rank = students.sort((a,b)=>(a-b)); // 오름차순 
+            
+            
+            // let rank = [1,1,1,1,1]; 
+            //  rank 를 구할 때, 따로 rank 행렬을 짜는 것이 여러 면으로 쓰이는 것 같다. 
+            // 기존에 모두 1등이라고 가정한다. 
+            
+            // 현재는 몇명인지 정해졌지만, 몇명인지 안 정해져있을 경우를 위해서
+            let n = students.length ;
+            let rank = Array.from({length:n} , ()=>1) ; // [1,1,1,1,1] 와 동일
+            
+            for ( let x=0 ; x < students.length ; x++ ){
+                for( let y of students){
+                    if ( students[x] < y ) rank[x] += 1 ;
+                }
+
+            }
+            answer = rank ; 
+            return answer ; 
+        }
+        let arr = [87,89,92,100,78];
+        console.log(solution(arr));
+
+        arr = [100,100,100,100,78];
+        console.log(solution(arr));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+    <script>
+    function solution(lottos, win_nums) {
+            var answer = [];
+            let max_answer_count = 0 , min_answer_count= 0 , count = 0 , zero_count = 0 ; 
+            for ( let x=0 ; x<lottos.length ; x++ ){
+                if ( lottos[x] === 0) {
+                    zero_count ++ ;
+                    continue ; 
+                }
+                for ( let y=0 ; y< win_nums.length ; y++){
+                        if ( lottos[x] === win_nums[y] ) count ++ ;
+                } 
+            }
+            console.log(count);
+            console.log(zero_count);
+            
+            max_answer_count = count + zero_count ;
+            min_answer_count = count ; 
+            
+            switch(max_answer_count){
+                case 6 : 
+                    answer.push(1);
+                    break;
+                case 5 : 
+                    answer.push(2);
+                    break;
+                case 4 : 
+                    answer.push(3);
+                    break;
+                case 3 :
+                    answer.push(4);
+                    break;
+                case 2 :
+                    answer.push(5);
+                    break;
+                default : 
+                    answer.push(6);
+                    break;
+            }
+            switch(min_answer_count){
+                case 6 : 
+                    answer.push(1);
+                    break;
+                case 5 : 
+                    answer.push(2);
+                    break;
+                case 4 : 
+                    answer.push(3);
+                    break;
+                case 3 :
+                    answer.push(4);
+                    break;
+                case 2 :
+                    answer.push(5);
+                    break;
+                default : 
+                    answer.push(6);
+                    break;
+            }
+            return answer;
+            }
+        // 느낀점 좀 더 심플한 풀이 및 좀 더 간결하게 코드를 작성할 필요가 있어보인다. 
+        // includes 라는 메소드에 대해서 좀 더 알아볼 필요가 있다. 
+        function solution2 ( lottos , win_nums ){
+            // 프로그래머스에서 제시해준 다른 풀이법
+            const rank = [6,6,5,4,3,2,1];
+            // 문제에서 1개 맞춘 것과 아무것도 못 맞춘 것의 등수를 6등으로 똑같이 주고 있으므로, 다음과 같이 정의함
+            let minCount = lottos.filter(v => win_nums.includes(v)).length;
+            // 맞춘 개수를 가져오는 것이다.
+            let zeroCount = lottos.filter(v => !v).length;
+            // 0 의 개수를 가져오도록 한 것이다. 자바스크립트에서 !0 는 true 임을 이용한 것이다. 
+            const maxCount = minCount + zeroCount;
+
+            return [rank[maxCount], rank[minCount]];
+        }
+        
+    console.log(solution([44,1,0,0,31,25],[31,10,45,1,6,19]));
+    console.log(solution([0,0,0,0,0,0],[38,19,20,40,15,25]));
+    console.log(solution([44,1,0,0,31,25],[31,10,45,1,6,19]));
+    
+    </script>
+</body>
+</html>

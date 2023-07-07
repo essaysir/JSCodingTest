@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        function solution(num , score){
+            let answer , sum=0 , cur=1  ;
+                for ( let x of score ){
+                    if ( x === 1 ){
+                        sum += cur ; 
+                        cur ++ ; 
+                    }
+                    else if ( x === 0 ){
+                        cur = 1 ;
+                    }
+                }
+            answer = sum ; 
+            return answer ; 
+        }
+
+        let num = 10 ; 
+        let score = [1,0,1,1,1,0,0,1,1,0];
+        console.log(solution(num,score));
+
+        score = [ 1, 1, 0 ,1 , 1, 1, 0, 1, 1,1];
+        console.log(solution(num,score));
+
+    </script>
+</body>
+</html>

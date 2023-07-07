@@ -42,13 +42,27 @@
             return answer ;
         };
 
+        function solution3 (str){
+            let answer =""; 
+            for ( let i=0 ;  i < str.length; i++){
+                // console.log(str[i], i  , str.indexOf(s[i]));
+                if ( str.indexOf(str[i]) === i ) {
+                    // 본연의 index 와 특정 글자의 indexOf 가 일치하는 것만 남기기
+                    // 일치하지 않는다는 것은 중복 되었음을 말하게 된다.
+                    answer += str[i];
+                }
+            }
 
+            return answer ;
+        }
         const str1 = 'study'; 
         const str2 = 'good';
         const str3 = 'ksekkset';
         console.log(solution1(str1));
         console.log(solution1(str2));
         console.log(solution2(str3));
+        console.log(solution3(str3));
+        
         
         
     </script>
