@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+
+<body>
+
+    
+
+    <script>
+        function solution1(str , x){
+            // 방법1 : 특정 문자가 존재하는 index 를 구하고,  
+            //         각 문자에서 index 까지의 거리를 구한뒤 최솟값을 정한다. 
+            let answer ='' ;
+            let num = 0 ;
+            let arr = []; 
+            for ( let i=0; i<str.length ; i++){
+                if ( str.charAt(i) === x ){
+                    num ++ ;
+                    arr.push(i);
+                }
+            }
+            // console.log('arr : '+ arr);
+            for ( let i=0; i<str.length; i++){
+                let num_arr = [];
+                arr.forEach((item,index) => {
+                    num_arr.push(Math.abs(Number(item-i)));
+                });
+                // console.log('num_arr : ' + num_arr);
+                answer += Math.min(...num_arr);
+            }
+            return answer ; 
+        }
+
+        function solution2( str , x ){
+            // 방법2 : 왼쪽에서 먼저 특정 문자와의 각각의 거리를 계산하고, 
+            // 다음으로, 오른쪽에서 거리를 계산하고, 둘 중 작은 것을 적어주는 것이다. 
+            let answer = [] ; 
+            let p = 1001 ; 
+            for ( let i of str ){
+                if ( i === x ) p = 0 
+                answer.push(p);
+                p++ ;
+            }   
+            p= 1001 ; 
+            for ( let i = str.length-1 ; i>=0 ; i-- ){
+                if ( str.charAt(i) === x ) p = 0 ; 
+                if ( answer[i] > p ) answer[i] = p ; 
+                p ++ ; 
+                // 선생님과 다르게 ,나는 p++ 가 뒤에 들어가야 하는 이유 
+                // 나는 0 인 경우에도 ++ 을 해주기 때문에, 뒤에 들어가야 함.
+
+            }
+            // console.log(answer);
+            answer = answer.join('');
+            return answer ;
+        }
+
+        let str = 'teachermode';
+        console.log(solution1(str,'e'));
+        console.log(solution2(str,'e'));
+    </script>
+</body>
+</html>

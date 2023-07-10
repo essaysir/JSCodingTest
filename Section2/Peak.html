@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+    <script>
+                    // if ( peak > arr[x-1][y] && peak > arr[x+1][y] && 
+                    //     peak > arr[x][y-1] && peak > arr[x][y-1]){
+                    //     count ++ ;
+                    // } 
+
+                    // 다음과 같이 하나씩 하는게 아니라, 1차원 배열을 만들어서 하면 더 쉽게 가능
+                    // 많이 쓰일 것이니 알아두자
+                    // 특정 행동을 반복하고 싶을때, 그것을 배열로 만들어서 for 문을 돌려보도록 해보자
+        function solution(arr){
+            let answer = 0 , count = 0  ; 
+            let dx = [ -1 , 0 , 1 , 0 ];
+            let dy = [ 0 ,  1 , 0 , -1 ];  
+            let n = arr.length ;
+            for ( let x=0 ; x<n; x++ ){
+                for ( let y=0 ; y<n; y++ ){
+                    let flag = 1 ; 
+
+                    for ( let k=0 ; k< 4 ; k++ ){
+                        let nx = x + dx[k];
+                        let ny = y + dy[k];
+                        if ( nx>=0 && nx<n && ny>=0 && ny<n && arr[nx][ny]>=arr[x][y] ){
+                            // 봉우리가 안되는 경우
+                            flag = 0 ;
+                            break ;
+                        }
+                    }
+                    if ( flag ) {
+                            // console.log('확인용 x ,y ' + x + y ) ;
+                            // console.log('arr[x][y]' + arr[x][y] ) ;
+                            count ++  ;
+                    }
+                }
+            }
+
+            answer = count ; 
+            return answer ; 
+        }
+        function solution2(arr){  
+                let answer=0;
+                let n=arr.length;
+                let dx=[-1, 0, 1, 0];
+                let dy=[0, 1, 0, -1];
+                for(let i=0; i<n; i++){
+                    for(let j=0; j<n; j++){
+                        let flag=1;
+                        for(let k=0; k<4; k++){
+                            let nx=i+dx[k];
+                            let ny=j+dy[k];
+                            if(nx>=0 && nx<n && ny>=0 && ny<n && arr[nx][ny]>=arr[i][j]){
+                                flag=0;
+                                break;
+                            }
+                        }
+                        if(flag) {
+                            console.log('확인용 x, y ' + i + j );
+                            answer++;
+                        }
+                    }
+                }  
+                
+                return answer;
+        }
+        let arr=[[5, 3, 7, 2, 3], 
+                    [3, 7, 1, 6, 1],
+                    [7, 2, 5, 3, 4],
+                    [4, 3, 6, 4, 1],
+                    [8, 7, 3, 5, 2]];
+        console.log(solution(arr));
+        console.log(solution2(arr));
+    
+    </script>
+</body>
+</html>

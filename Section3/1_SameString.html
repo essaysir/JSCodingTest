@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+    <script>
+        function solution(str){
+            // 회문 문자열 => 앞으로 읽거나 뒤로 읽거나 똑같은 경우 
+            // 대소문자 구분 하지 않는다.
+            let answer ; 
+            let n = str.length ; 
+            let new_str = ''; 
+            str = str.toLowerCase();
+            for ( x=str.length-1 ; x>= 0 ; x-- ){
+                new_str += str.charAt(x);
+            }
+            
+            if ( str === new_str ) answer = 'YES';
+            else answer = 'NO';
+            // console.log(str);
+            // console.log(new_str);
+            return answer ; 
+        }
+        let str1 = 'gooG' ; 
+        let str2 = 'good' ;
+        console.log(solution(str1));
+        console.log(solution(str2));
+    
+    </script>
+</body>
+</html>

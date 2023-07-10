@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+
+    <script>
+        function solution(str) {
+        let answer = 'YES';
+        for (let x of str) {
+                let reg = /[^a-zA-Z]/;
+                if (reg.test(x)) {
+                    str = str.replace(x, '');
+                }
+            // console.log('str: ' + str);
+        }// end of for 
+        
+        str = str.toLowerCase();
+        // console.log('str: ' + str);
+        for ( let x = 0 ; x < Math.floor(str.length/2) ; x++ ){
+            if ( str.charAt(x) !== str.charAt(str.length - x - 1 )){
+                answer = 'NO';
+            }
+        }
+        
+        return answer;
+        }   
+
+        function solution2(str){
+            // reverse 를 이용한 방식 => reverse 는 1차원 배열에서만 사용할 수 있어서, 배열로 바꾸어 주어야 한다
+            let answer = 'YES';
+            str = str.toLowerCase().replace(/[^a-z]/g,'');
+            // console.log(str);
+            if ( str.split('').reverse().join('') !== str ) answer = 'NO';
+            return answer ; 
+        }
+
+        let str = 'found7, time: study; Yduts; emit, 7Dnuof';
+        console.log(solution(str));
+        console.log(solution2(str));
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+
+    <script>
+        function solution1(str){
+            let answer='' ; 
+                let reg = /[0-9]/;
+                // 정규표현식을 통해서, 숫자만을 걸러내는 경우
+                for ( let x of str ){
+                    if(reg.test(x)){
+                        answer += x ;
+                    }
+                }
+                // console.log(answer);
+                answer = Number(answer);
+                return answer ;
+        }
+        
+        function solution2(str){
+            let answer='' ; 
+            // isNan 을 통해, 숫자를 걸러내는 방법
+            for ( let x of str ){
+                if ( !isNaN(x) ) answer += x ;
+            }
+            answer = Number(answer);
+            return answer ;
+        }
+
+        let str = 'g0en2T0s8eSoft' ;
+        console.log(solution1(str));
+        console.log(solution2(str));
+        
+    </script>
+</body>
+</html>

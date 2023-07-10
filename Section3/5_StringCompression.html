@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        function solution(str){
+            let answer = [];
+            str = str + ''; 
+            let cnt = 1  , cnt_index = 0 ; 
+            for ( let x=0 ; x<str.length ; x++){
+                if ( cnt === 1 ){
+                    answer.push(str.charAt(x));
+                }
+                
+                if ( str.charAt(x) === str.charAt(x+1)){
+                    cnt ++ ;
+                }
+                else{
+                    if ( cnt !== 1 ) answer.push(cnt); 
+                    cnt = 1 ; 
+                }
+                if ( str.charAt(x+1) === ''){
+                    break ;
+                }
+
+            }
+            answer = answer.join('');
+            return answer ; 
+
+        } // END OF FUNCTION SOLUTION
+
+        function solution2(str){
+            let answer = '';
+            let cnt = 1 ;
+            str = str + '';
+            for ( let i = 0 ; i< str.length ; i++){
+                if (str[i] === str[i+1]) cnt ++;
+                else{
+                    answer += str[i]; 
+                    if ( cnt > 1) answer += String(cnt);
+                    cnt = 1 ; 
+                }
+            }
+            return answer ; 
+        }
+        let str = 'KKHSSSSSSSE';
+        console.log(solution(str));
+        console.log(solution2(str));
+    </script>
+</body>
+</html>
