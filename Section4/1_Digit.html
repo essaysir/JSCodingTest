@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+    <script>
+        function solution(n , arr_num){
+            let answer , max = Number.MIN_SAFE_INTEGER ;
+            let sum = 0 ;  
+            // n은 제시된 총 숫자의 개수 => arr_num.length 과 동일 
+
+            // 일의 자리만 뽑아내는 방법이 무엇이 있을까? 아니면 소수 부분만 빼오는 방법은?
+            // 10 의 n 승으로 나눈 나머지!! => X 
+            // 10 으로 나눈 나머지 그리고, 계속해서 소수점은 없애주기를 통해서 해결
+
+            for ( let x of arr_num ){
+                sum = 0 ;
+                let tmp = x ;
+                for ( let y=1 ;  y<8 ; y++){ 
+                // 배열안에 있는 자연수가 10의 7승을 넘지 못한다는 조건이 존재하여서 위와같이 설정함
+                // 몇 자리수 인지 알아내서 딱 그 정도만 반복하는 법은 없을까?
+                sum += tmp % 10 ; 
+                tmp = parseInt(tmp / 10 );
+                    // Math.floor 또는 parseInt
+
+                // console.log('확인용 sum :  '+ sum); 
+                // console.log('확인용 tmp : ' +tmp); 
+                    
+                if ( tmp === 0 ) break ; 
+                    // 몇자리수인지를 알아내는 것이 아니라
+                    // 끝난 조건을 알아내 그때 for 문을 끝낸다.
+                    // 이 경우 while 문이 더 코드가 깔끔할 것 같음 
+                }
+
+                if ( sum > max ) {
+                    max = sum ; 
+                    answer = x ;
+                }
+                else if ( sum === max ){
+                    if ( x > answer ) answer = x ; 
+
+                }
+            }
+
+            return answer ;
+        }// 
+
+        // 숫자를 문자열로 바꿔서 배열로 만든 뒤에 계산하는 방법이다. 
+        function solution2(n, arr){
+            let answer , sum = 0 , max =Number.MIN_SAFE_INTEGER ;
+            for ( let x of arr ){
+                sum = 0 ; 
+                // console.log(x.toString().split(''));
+                sum += x.toString().split('').reduce((acr , cur )=>  acr + Number(cur), 0 );
+                if ( sum > max ) {
+                    max = sum ;
+                    answer = x ; 
+                }
+                else if ( sum === max ) {
+                    if ( x > answer ) answer = x ;   
+                }
+                // console.log(' 확인용 answer : ' + answer );
+            }
+
+
+
+            return answer ;
+        }
+
+        
+        let num = 7 ; 
+        let arr = [128,460,603,40,521,137,123];
+        console.log(solution2(num,arr));
+        console.log(solution2(2,[1234,235]));
+        console.log(solution(num,arr));
+        console.log(solution(2,[1234,235]));
+        
+    </script>
+</body>
+</html>

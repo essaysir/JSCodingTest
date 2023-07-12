@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출력결과</title>
+</head>
+<body>
+    
+
+
+    <script>
+        function solution(n , arr){
+            let answer = [];
+            for ( let x of arr){
+                let flag = 1 ; 
+                let dec = Number(x.toString().split('').reverse().join(''));
+                // 또는 
+                // while(x){
+                //    let t = x % 10 ; 
+                //    res = res * 10 + t ;
+                //    x = parseInt(x/10);
+                //}
+
+                // 위의 방법은 문자열로 바꾸지 않고, 숫자를 그대로 유지한 채 하는 방법
+                // 둘의 시간 복잡도의 차이는 미미하다고 한다. 둘 중 아무거나 써도 될 듯하다.
+                console.log(dec);
+                if ( dec === 1 ) continue ; 
+                // for ( let i = 2 ; i<dec ; i++ ){
+                // 또는 
+                for ( let i = 2 ; i<=parseInt(dec/2); i++){
+                // 또는 for ( let i=2 ; i <= parseInt(Math.sqrt(num)); i++ )
+                
+                // 소수를 정하는 경우에, 굳이 그 숫자보다 작은 숫자까지 모두 돌려야 할 
+                // 필요가 있는 것은 아니다. 나누기 2 해서 그 보다 작은 숫자까지만 돌려도 된다.
+                // 또는 Math.sqrt() 은 제곱근을 구하는 것이고, 이 전까지만 돌려도 된다. 
+
+                    if ( dec%i === 0 ) {
+                        flag = 0 ; 
+                        break ; 
+                    }
+                }
+                if ( flag ){
+                    answer.push(dec);
+                }
+
+            }    
+
+            return answer ; 
+        }
+
+        let n = 9 ; 
+        let arr = [32,55,62,20,250,370,200,30,100];
+        console.log(solution(n,arr));
+    </script>
+</body>
+</html>
