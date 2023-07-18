@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m, arr) {
+        let answer = 0,
+          count = 0;
+        let test_length = arr.length;
+        let person_num = arr[0].length;
+        // m 은 시험 본 수
+        // 멘토가 되기 위해서는 멘티 학생보다
+        // 모든 테스트 에서 등수가 앞서야 한다.
+
+        // 이는 한 사람씩 모든 테스트에서 그 사람보다 큰 지 확인 해야한다.
+        // if (x !== y && arr[y][0] < arr[y][x]) {
+        //   flag = false;
+        //   break;
+        // }  => 잘못된 풀이인 듯하다
+        // 각각 한 사람씩 비교해봐야 할듯 한데? 이를 어떻게 해야하는지 ?
+        for (mento = 0; mento < person_num; mento++) {
+          // 사람 4명을 모두 검토할 것
+          // 4C2 의 여섯가지 경우의 수를 어떻게 검사할 것인가?
+          // 무식한 방법이지만, for 문을 한번더 쓰면 해결 가능
+          // 이외에 다른 해결방법이 존재하는 지 궁금!
+          for (menti = 0; menti < person_num; menti++) {
+            if (mento === menti) continue;
+            let flag = true;
+            for (y = 0; y < test_length; y++) {
+              // 시험 3번에 대해 모두 검사할 것!
+              if (arr[y][mento] > arr[y][menti]) {
+                flag = false;
+                break;
+              }
+            }
+            if (flag) {
+              console.log([mento, menti]);
+              count++;
+            }
+          }
+        }
+
+        answer = count;
+        return answer;
+      }
+      // 정답은 이해는 가는 데 왜 굳이 이렇게 해야하는 지 이해가 안됨.. 위의 방법에서 잘못된 것이 무엇인지 궁금함!
+      function solution_answer(test) {
+        let answer = 0,
+          tmp = [];
+        m = test.length;
+        n = test[0].length;
+        for (let i = 1; i <= n; i++) {
+          for (let j = 1; j <= n; j++) {
+            let cnt = 0;
+            for (let k = 0; k < m; k++) {
+              let pi = (pj = 0);
+              for (let s = 0; s < n; s++) {
+                if (test[k][s] === i) pi = s;
+                if (test[k][s] === j) pj = s;
+              }
+              if (pi < pj) cnt++;
+            }
+            if (cnt === m) {
+              answer++;
+              tmp.push([i, j]);
+            }
+          }
+        }
+        console.log(tmp);
+        return answer;
+      }
+      let n = 4;
+      let m = 3;
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      // console.log(arr[2][0]); // 세번째 시험의 첫번째 사람
+      // console.log(arr[0][2]); // 첫번쨰 시험의 세번쨰 사람
+      // 즉 arr[x][y] => (x+1) 번째 시험의 (y+1) 번째 사람
+
+      console.log(solution(n, m, arr));
+      console.log(solution_answer(arr));
+    </script>
+  </body>
+</html>
