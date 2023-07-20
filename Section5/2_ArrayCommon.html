@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <h2 id="answer"></h2>
+    <h2 id="answer2"></h2>
+
+    <script>
+      function solution(arr1, arr2) {
+        let answer = [];
+        // 이게 two pointer 의 문제라고 ? why ?
+        arr1.sort((a, b) => a - b);
+        for (let x of arr1) {
+          for (let y = 0; y < arr2.length; y++) {
+            if (x === arr2[y]) {
+              answer.push(x);
+              break;
+            }
+          }
+        }
+        return answer;
+      }
+
+      function solution2(arr1, arr2) {
+        let answer = [];
+        arr1.sort(); // 기본 default 가 오름차순 정렬
+        arr2.sort();
+        let p1 = (p2 = 0);
+        while (p1 < arr1.length && p2 < arr2.length) {
+          if (arr1[p1] === arr2[p2]) {
+            answer.push(arr1[p1++]);
+            p2++;
+          } else {
+            if (arr1[p1] > arr2[p2]) p2++;
+            else p1++;
+          }
+        }
+        return answer;
+      }
+      let arr1 = [1, 3, 9, 5, 2];
+      let arr2 = [3, 2, 5, 7, 8];
+
+      document.getElementById("answer").innerHTML = solution(arr1, arr2);
+      document.getElementById("answer2").innerHTML = solution2(arr1, arr2);
+    </script>
+  </body>
+</html>
