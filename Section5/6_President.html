@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let answer;
+        let A_cnt = 0,
+          B_cnt = 0,
+          C_cnt = 0,
+          D_cnt = 0,
+          E_cnt = 0;
+        for (let x of str) {
+          if ("A" === x) A_cnt++;
+          if ("B" === x) B_cnt++;
+          if ("C" === x) C_cnt++;
+          if ("D" === x) D_cnt++;
+          if ("E" === x) E_cnt++;
+        }
+        // 각자의 개수를 구하고, 가장 많은 투표수는 구할 수 있지만,
+        // 그에 해당 하는 알파벳은 어떻게 알아낼 것인가 ?
+
+        // 반드시 당선되는 수는 하나라고 하니까?
+        let max = Math.max(A_cnt, B_cnt, C_cnt, D_cnt, E_cnt);
+        if (max === A_cnt) answer = "A";
+        if (max === B_cnt) answer = "B";
+        if (max === C_cnt) answer = "C";
+        if (max === D_cnt) answer = "D";
+        if (max === E_cnt) answer = "E";
+
+        return answer;
+      }
+      function solution_answer(str) {
+        let answer;
+        let map = new Map();
+        for (let x of str) {
+          if (!map.has(x)) map.set(x, 1);
+          else map.set(x, map.get(x) + 1);
+        }
+        let max = Number.MIN_SAFE_INTEGER;
+        for (let [key, val] of map) {
+          if (val > max) {
+            max = val;
+            answer = key;
+          }
+        }
+
+        return answer;
+      }
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
+      console.log(solution_answer(str));
+    </script>
+  </body>
+</html>

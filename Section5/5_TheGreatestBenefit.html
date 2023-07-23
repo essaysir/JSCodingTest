@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // Sliding Window 알고리즘
+      function solution(k, arr) {
+        let answer = 0;
+        let max = Number.MIN_SAFE_INTEGER;
+        for (let px = 0; px < arr.length - (k - 1); px++) {
+          // 항상 3개가 아니다!! => 상황에 맞게 변하도록 해야함
+          let sum = arr[px];
+          let cnt = 1;
+          while (cnt <= k - 1) {
+            sum += arr[px + cnt++];
+          }
+          if (sum >= max) max = sum;
+        }
+        answer = max;
+        return answer;
+      }
+      function solution_answer(k, arr) {
+        let answer = 0;
+        let sum = 0;
+        for (let i = 0; i < k; i++) sum += arr[i];
+        answer = sum;
+        for (let y = k; y < arr.length; y++) {
+          sum += arr[y] - arr[y - k];
+          answer = Math.max(answer, sum);
+        }
+        return answer;
+      }
+      let a = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+      console.log(solution(3, a));
+      console.log(solution_answer(3, a));
+
+      console.log(solution(6, a));
+      console.log(solution_answer(6, a));
+    </script>
+  </body>
+</html>
