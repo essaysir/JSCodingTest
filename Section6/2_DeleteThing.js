@@ -20,5 +20,22 @@ function solution(s){
     return answer;
 }
 
+function solution_teach(s){
+    let answer ;
+    const stack = [];
+        for ( let x of s ){
+            if(x===')'){
+                while(stack.pop() !=='(' );
+                // pop 한 것이  ( 일때 거짓이 되면서,
+                // 반복문이 끝난다.
+            }
+            else stack.push(x);
+            
+        }
+    answer = stack.join('');
+    return answer;
+}
+
 let str="(A(BC)D)EF(G(H)(IJ)K)LM(N)";
 console.log(solution(str));
+console.log(solution_teach(str));
