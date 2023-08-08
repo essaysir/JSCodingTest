@@ -8,7 +8,7 @@ function solution(arr){
     
     // console.log(' sort 의 부속효과는 ? : '+arr)
     //  sort 의 부속효과는 ? : 5,7,11,13,15,23 
-    // sort 는 부속효과가 존재하는 함수이다. 기존의 배열을 아예 바꿈
+    //  sort 는 부속효과가 존재하는 함수이다. 기존의 배열을 아예 바꿈
 
 
     return answer;
