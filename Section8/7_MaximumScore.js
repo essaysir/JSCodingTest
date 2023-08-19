@@ -9,7 +9,7 @@ function solution(num, maxtime , prob){
 
         // time > maxtime 을 하면, 큰 것들은 실행이 안되니 다음과 같은 방식을 유념하자 
         if ( time > maxtime ) return ; 
-        if( v === num-1){
+        if( v === num){
             answer = Math.max(score,answer);
         }
         else{
